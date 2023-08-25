@@ -165,13 +165,9 @@ while True:
     # step the optimizer and scaler if training in fp16
     # flush the gradients as soon as we can, no need for this memory anymore
     optimizer.zero_grad(set_to_none=True)
-
-    # timing and loggin
-    if iter_num % log_interval == 0:
-        # get loss as float. note: this is a CPU-GPU sync point
-        # scale up to undo the division above, approximating the true total loss (exact would have been a sum)
-        lossf = loss.item() * gradient_accumulation_steps
-        print(f"iter {iter_num}: loss {lossf:.4f}")
+    lossf = loss.item() * gradient_accumulation_steps
+    print(f"iter {iter_num}: loss {lossf:.4f}")
+        
     iter_num += 1
     local_iter_num += 1
 
