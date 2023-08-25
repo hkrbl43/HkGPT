@@ -120,7 +120,8 @@ def estimate_loss():
     return out
 X, Y = get_batch('train') # fetch the very first batch
 t0 = time.time()
-local_iter_num = 0 # number of iterations in the lifetime of this process
+local_iter_num = 0
+iter_num = 0# number of iterations in the lifetime of this process
 while True:
 
     # determine and set the learning rate for this iteration
