@@ -113,7 +113,7 @@ device_type =  xm.xla_device()
 # for later use in torch.autocast
 # note: float16 data type will automatically use a GradScaler
 ptdtype = {'float32': torch.float32, 'bfloat16': torch.bfloat16, 'float16': torch.float16}[dtype]
-ctx = nullcontext() if device_type == 'cpu' else torch.amp.autocast(device_type=device_type, dtype=ptdtype)
+ctx = nullcontext()
 
 # poor man's data loader
 data_dir = os.path.join('data', dataset)
