@@ -12,7 +12,7 @@ from torch.distributed import init_process_group, destroy_process_group
 from model import Config, GPT
 
 out_dir = 'out'
-eval_interval = 200
+eval_interval = 100
 log_interval = 1
 eval_iters = 20
 eval_only = False # if True, script exits right after the first eval
@@ -29,7 +29,7 @@ dropout = 0.0 # for pretraining 0 is good, for finetuning try 0.1+
 bias = False # do we use bias inside LayerNorm and Linear layers?
 # adamw optimizer
 learning_rate = 3e-4 # max learning rate
-max_iters = 2000 # total number of training iterations
+max_iters = 1000 # total number of training iterations
 weight_decay = 1e-1
 beta1 = 0.9
 beta2 = 0.95
@@ -175,7 +175,7 @@ while True:
     optimizer.zero_grad(set_to_none=True)
 
     # timing and loggin
-    if iter_num % log_interval == 0 and master_process:
+    if iter_num % log_interval == 0:
         # get loss as float. note: this is a CPU-GPU sync point
         # scale up to undo the division above, approximating the true total loss (exact would have been a sum)
         lossf = loss.item() * gradient_accumulation_steps
