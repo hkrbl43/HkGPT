@@ -306,10 +306,10 @@ while True:
         scaler.scale(loss).backward()
     # clip the gradient
     if grad_clip != 0.0:
-        scaler.unscale_(optimizer)
+        
         torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
     # step the optimizer and scaler if training in fp16
-    scaler.step(optimizer)
+    
     scaler.update()
     # flush the gradients as soon as we can, no need for this memory anymore
     optimizer.zero_grad(set_to_none=True)
