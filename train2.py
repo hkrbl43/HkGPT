@@ -25,7 +25,7 @@ block_size = 192
 n_layer = 4
 n_head = 4
 n_embd = 128
-dropout = 0.0 # for pretraining 0 is good, for finetuning try 0.1+
+dropout = 0.1 # for pretraining 0 is good, for finetuning try 0.1+
 bias = False # do we use bias inside LayerNorm and Linear layers?
 # adamw optimizer
 learning_rate = 3e-4 # max learning rate
