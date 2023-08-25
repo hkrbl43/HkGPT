@@ -125,6 +125,7 @@ def estimate_loss():
 X, Y = get_batch('train') # fetch the very first batch
 t0 = time.time()
 local_iter_num = 0
+best_val_loss = 1e9
 iter_num = 0# number of iterations in the lifetime of this process
 while True:
 
